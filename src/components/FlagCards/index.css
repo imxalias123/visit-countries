@@ -1,0 +1,27 @@
+.country-img {
+  width: 300px;
+  height: 200px;
+}
+.wrap-countries {
+  width: 300px;
+  height: 260px;
+  margin-right: 10px;
+  background-color: #1f1f2f;
+}
+.country-name {
+  color: #fff;
+  margin-left: 10px;
+}
+.wrap-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.remove-btn {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  height: 30px;
+  margin-right: 10px;
+}

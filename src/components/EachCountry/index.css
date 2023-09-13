@@ -1,0 +1,31 @@
+.wrap-country {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #94a3b8;
+  background-color: #1f1f2f;
+}
+
+.scroll-name {
+  color: #fff;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  font-size: 17px;
+}
+.btn {
+  background-color: #3b82f6;
+  margin-right: 30px;
+  border: none;
+  color: #fff;
+  width: 80px;
+  height: 35px;
+  font-size: 17px;
+  border-radius: 5px;
+}
+.normal {
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  margin-right: 35px;
+}
