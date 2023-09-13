@@ -80,24 +80,32 @@ const initialCountriesList = [
 // Replace your code here
 class App extends Component {
   state = {
-    countryCardsList: '',
+    countryList: initialCountriesList,
+    Visited: initialCountriesList.isVisited,
   }
 
-  countriesCards = () => {
-    const {countryCardsList} = this.state
-
-    const countryDisplay = countryCardsList.filter(
+  addCountryCard = () => {
+    const countryDisplay = initialCountriesList.filter(
       each => each.isVisited === true,
     )
 
+    return countryDisplay
+  }
+
+  countriesCards = () => {
+    const {countryList} = this.state
+    const isVisitedConstants = countryList.isVisited ? 'false' : 'true'
+
     this.setState({
-      countryCardsList: countryDisplay,
+      Visited: isVisitedConstants,
     })
   }
 
+  removeCard = () => {}
+
   render() {
-    const {countryCardsList} = this.state
-    const countryDisplay = this.countriesCards()
+    const {countryList} = this.state
+    const countryDisplay = this.addCountryCard()
 
     return (
       <div className="container">
@@ -109,8 +117,12 @@ class App extends Component {
         </ul>
         <h1 className="heading">Visited Countries</h1>
         <ul className="countries-unordered">
-          {countryCardsList.map(each => (
-            <FlagCards key={each.id} eachCountry={each} />
+          {countryDisplay.map(each => (
+            <FlagCards
+              key={each.id}
+              eachCountry={each}
+              removeCard={this.removeCard}
+            />
           ))}
         </ul>
       </div>
