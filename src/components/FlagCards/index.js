@@ -9,7 +9,7 @@ const FlagCards = props => {
   }
   return (
     <li className="wrap-countries">
-      <img src={imageUrl} alt={name} className="country-img" />
+      <img src={imageUrl} alt="thumbnail" className="country-img" />
       <div className="wrap-bottom">
         <p className="country-name">{name}</p>
         <button type="button" className="remove-btn" onClick={onDelete}>

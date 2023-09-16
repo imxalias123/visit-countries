@@ -81,49 +81,68 @@ const initialCountriesList = [
 class App extends Component {
   state = {
     countryList: initialCountriesList,
-    Visited: initialCountriesList.isVisited,
   }
 
-  addCountryCard = () => {
-    const countryDisplay = initialCountriesList.filter(
-      each => each.isVisited === true,
-    )
-
-    return countryDisplay
-  }
-
-  countriesCards = () => {
+  isVisitedPlaces = () => {
     const {countryList} = this.state
-    const isVisitedConstants = countryList.isVisited ? 'false' : 'true'
-
-    this.setState({
-      Visited: isVisitedConstants,
-    })
+    const displayCards = countryList.filter(each => each.isVisited === true)
+    return displayCards
   }
 
-  removeCard = () => {}
+  changeButton = id => {
+    this.setState(prevState => ({
+      countryList: prevState.countryList.map(each => {
+        if (id === each.id) {
+          return {...each, isVisited: !each.isVisited}
+        }
+        return each
+      }),
+    }))
+  }
+
+  removeCard = id => {
+    this.setState(prevState => ({
+      countryList: prevState.countryList.map(each => {
+        if (id === each.id) {
+          return {...each, isVisited: !each.isVisited}
+        }
+        return each
+      }),
+    }))
+  }
 
   render() {
     const {countryList} = this.state
-    const countryDisplay = this.addCountryCard()
+    const displayCards = this.isVisitedPlaces()
+    const length = displayCards.length !== 0
 
     return (
       <div className="container">
         <h1 className="heading">Countries</h1>
         <ul className="scroll-list">
-          {initialCountriesList.map(each => (
-            <EachCountry key={each.id} eachCountry={each} />
+          {countryList.map(each => (
+            <EachCountry
+              key={each.id}
+              eachCountry={each}
+              changeButton={this.changeButton}
+            />
           ))}
         </ul>
         <h1 className="heading">Visited Countries</h1>
         <ul className="countries-unordered">
-          {countryDisplay.map(each => (
-            <FlagCards
-              key={each.id}
-              eachCountry={each}
-              removeCard={this.removeCard}
-            />
-          ))}
+          {length ? (
+            displayCards.map(each => (
+              <FlagCards
+                key={each.id}
+                eachCountry={each}
+                removeCard={this.removeCard}
+              />
+            ))
+          ) : (
+            <div>
+              <p>No Countries Visited Yet!</p>
+            </div>
+          )}
         </ul>
       </div>
     )
